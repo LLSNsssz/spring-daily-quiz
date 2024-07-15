@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: MyApp-Dev
+
+  thymeleaf:
+    cache: false # 캐시를 사용하지 않음 -> 수정 시 바로 반영됨
+    prefix: classpath:/templates/ # 템플릿 파일 위치
+    suffix: .html # 템플릿 파일 확장자
+    mode: HTML # HTML5 호환
+    encoding: UTF-8 # 인코딩 설정**
