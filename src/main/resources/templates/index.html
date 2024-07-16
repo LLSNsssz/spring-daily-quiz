@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Hello, Thymeleaf!</title>
 </head>
 <body>
-<!--<h1 th:text="${message}"></h1>-->
-<!--<ul>-->
-<!--  <li th:each="user : ${users}">-->
-<!--    <p th:text="${user.username}"></p>-->
-<!--    <p th:text="${user.email}"></p>-->
-<!--    <p th:if="${user.isAdmin}"><a href="#">관리자 메뉴</a></p>-->
-<!--    <p th:unless="${user.isAdmin}"><a href="#">일반 사용자 메뉴</a></p>-->
-<!--  </li>-->
-<!--</ul>-->
+<h1>Hello, Thymeleaf!</h1>
+
+<h2>User Information</h2>
+<p>Name: <span th:text="${user.username}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+
+<div th:if="${user.isAdmin}">
+  <a href="#">관리자 메뉴</a>
+</div>
+<div th:unless="${user.isAdmin}">
+  <a href="#">일반 사용자 메뉴</a>
+</div>
+
+<a href="/products">View Products</a>
+<a href="/register">Register New User</a>
 </body>
 </html>

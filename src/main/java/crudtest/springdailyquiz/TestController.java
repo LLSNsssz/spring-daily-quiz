@@ -8,39 +8,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/users")
 public class TestController {
 
-    private List<User> users = new ArrayList<>();
-
-//    @GetMapping("/index")
-//    public String test(Model model) {
-//        model.addAttribute("message", "Hello, Thymeleaf!!!");
-//
-//
-//        model.addAttribute("users", users);
-//
-//        return "index";
-//    }
-
-    @GetMapping
-    public String listUsers(Model model) {
-        model.addAttribute("users", users);
-        return "users/list";
+    @GetMapping("/index")
+    public String test(Model model) {
+        User user = new User("lee", "lee@example.com", true, "1234");
+        model.addAttribute("user", user);
+        return "index";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/products")
+    public String listUsers(Model model) {
+        List<Product> products = new ArrayList<>();
+        products.add(new Product(1L, "Product 1", 10.99));
+        products.add(new Product(2L, "Product 2", 20.99));
+        products.add(new Product(3L, "Product 3", 30.99));
+        model.addAttribute("products", products);
+        return "products";
+    }
+
+    @GetMapping("/register")
     public String newUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "users/form";
+        return "register";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String saveUser(@ModelAttribute User user) {
-        users.add(user);
-        return "redirect:/users";
+        System.out.println("Received user registration");
+        System.out.println("Name = " + user.getUsername());
+        System.out.println("Email = " + user.getEmail());
+        System.out.println("Password = " + user.getPassword());
+        return "redirect:/index";
     }
 }
