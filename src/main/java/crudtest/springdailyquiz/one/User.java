@@ -1,4 +1,4 @@
-package crudtest.springdailyquiz;
+package crudtest.springdailyquiz.one;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

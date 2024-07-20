@@ -1,4 +1,4 @@
-package crudtest.springdailyquiz;
+package crudtest.springdailyquiz.two;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Book {
 
     private Long id;
-    private String name;
+    private String title;
+    private String author;
+    private String isbn;
     private double price;
-
+    private int publishedYear;
 }

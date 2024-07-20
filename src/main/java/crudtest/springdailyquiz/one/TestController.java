@@ -1,4 +1,4 @@
-package crudtest.springdailyquiz;
+package crudtest.springdailyquiz.one;
 
 import java.util.ArrayList;
 import java.util.List;

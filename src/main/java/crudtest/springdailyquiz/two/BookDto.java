@@ -1,4 +1,4 @@
-package crudtest.springdailyquiz;
+package crudtest.springdailyquiz.two;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,12 +7,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+@AllArgsConstructor
+public class BookDto {
 
-    private long id;
     private String title;
     private String author;
-    private int publicationYear;
+    private String isbn;
+    private double price;
+    private int publishedYear;
 }

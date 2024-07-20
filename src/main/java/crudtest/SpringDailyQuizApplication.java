@@ -1,9 +1,11 @@
-package crudtest.springdailyquiz;
+package crudtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(
+    scanBasePackages = "crudtest.springweeklyquiz"
+)
 public class SpringDailyQuizApplication {
 
     public static void main(String[] args) {

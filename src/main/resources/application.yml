@@ -2,8 +2,19 @@ server:
   port: 8081
 
 spring:
-  application:
-    name: MyApp-Dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/smartrestaurant
+    username: root
+    password: '0000'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
   thymeleaf:
     cache: false # 캐시를 사용하지 않음 -> 수정 시 바로 반영됨
@@ -11,3 +22,8 @@ spring:
     suffix: .html # 템플릿 파일 확장자
     mode: HTML # HTML5 호환
     encoding: UTF-8 # 인코딩 설정**
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
