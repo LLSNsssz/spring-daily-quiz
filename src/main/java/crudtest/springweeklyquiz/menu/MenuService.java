@@ -14,19 +14,20 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public MenuDto addMenu(MenuDto menuDto) {
+    public MenuDto createMenu(MenuDto menuDto) {
         Menu menu = convertToEntity(menuDto);
         menu = menuRepository.save(menu);
         return convertToDto(menu);
     }
 
-    public MenuDto update(MenuDto menuDto) {
-        Menu menu = convertToEntity(menuDto);
+    public MenuDto updateMenuById(Long id) {
+        Menu menu = menuRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("해당 메뉴는 존재하지 않습니다"));
         menu = menuRepository.save(menu);
         return convertToDto(menu);
     }
 
-    public void deleteMenu(Long id) {
+    public void deleteMenuById(Long id) {
         menuRepository.deleteById(id);
     }
 

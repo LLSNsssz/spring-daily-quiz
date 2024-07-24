@@ -1,4 +1,4 @@
-package crudtest.springweeklyquiz.order;
+package crudtest.springweeklyquiz.order.oderItem;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

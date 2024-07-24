@@ -2,15 +2,20 @@ package crudtest.springweeklyquiz.order;
 
 import crudtest.springweeklyquiz.customer.Customer;
 
+import crudtest.springweeklyquiz.order.oderItem.OrderItem;
 import crudtest.springweeklyquiz.store.Store;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +30,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -39,14 +45,18 @@ public class Order {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OrderStatus status;
 
+    @Column(nullable = false)
     private LocalDateTime orderDate;
+
+    @Column(nullable = false)
+    private BigDecimal totalAmount;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
-
-    private BigDecimal totalAmount;
 
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);

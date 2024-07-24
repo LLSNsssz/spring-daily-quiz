@@ -1,5 +1,8 @@
 package crudtest.springweeklyquiz.store;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,26 +14,33 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public StoreDto createOrder(StoreDto orderDto) {
-        Store store = convertToEntity(orderDto);
+    public StoreDto createStore(StoreDto storeDto) {
+        Store store = convertToEntity(storeDto);
         store = storeRepository.save(store);
-        return convertToDTO(store);
+        return convertToDto(store);
     }
 
-    public StoreDto updateOrder(StoreDto orderDto) {
-        Store store = convertToEntity(orderDto);
+    public StoreDto getStoreById(Long id) {
+        Store store = storeRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Store not found"));
+        return convertToDto(store);
+    }
+
+    public List<StoreDto> getAllStores() {
+        return storeRepository.findAll().stream()
+            .map(this::convertToDto)
+            .collect(Collectors.toList());
+    }
+
+    public StoreDto updateStoreById(Long id) {
+        Store store = storeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("가게를 찾을 수 없습니다."));
         store = storeRepository.save(store);
-        return convertToDTO(store);
+        return convertToDto(store);
     }
 
-    public void cancelOrder(Long id) {
-        Store store = storeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("주문을 찾지 못했습니다."));
-        storeRepository.save(store);
-    }
-
-    public StoreDto getOrderById(Long id) {
-        Store store = storeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("주문을 찾지 못했습니다."));
-        return convertToDTO(store);
+    public void deleteStore(Long id) {
+        storeRepository.deleteById(id);
     }
 
     private Store convertToEntity(StoreDto storeDto) {
@@ -42,7 +52,7 @@ public class StoreService {
         return store;
     }
 
-    private StoreDto convertToDTO(Store store) {
+    private StoreDto convertToDto(Store store) {
         StoreDto storeDto = new StoreDto();
         storeDto.setId(store.getId());
         storeDto.setName(store.getName());
