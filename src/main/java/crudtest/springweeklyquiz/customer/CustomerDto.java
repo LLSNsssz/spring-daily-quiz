@@ -1,15 +1,16 @@
-package crudtest.springweeklyquiz;
+package crudtest.springweeklyquiz.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
+
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class Customer {
+@NoArgsConstructor
+public class CustomerDto {
 
     private Long id;
     private String name;
