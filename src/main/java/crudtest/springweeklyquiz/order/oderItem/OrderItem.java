@@ -39,6 +39,8 @@ public class OrderItem {
 
     @Column(nullable = false)
     private int quantity;
-    @Column(nullable = false)
-    private BigDecimal price;
+
+    public BigDecimal getTotalPrice() {
+        return menu.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
 }

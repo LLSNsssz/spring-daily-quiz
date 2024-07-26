@@ -31,7 +31,7 @@ public class StoreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StoreDto> getStoreById(@PathVariable Long id) {
+    public ResponseEntity<StoreDto> getStoreById(@PathVariable("id") Long id) {
         StoreDto store = storeService.getStoreById(id);
         return ResponseEntity.ok(store);
     }
@@ -43,13 +43,13 @@ public class StoreController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StoreDto> updateStoreById(@PathVariable Long id) {
-        StoreDto updatedStore = storeService.updateStoreById(id);
+    public ResponseEntity<StoreDto> updateStoreById(@PathVariable("id") Long id, @RequestBody StoreDto storeDto) {
+        StoreDto updatedStore = storeService.updateStoreById(id, storeDto);
         return ResponseEntity.ok(updatedStore);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStore(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStore(@PathVariable("id") Long id) {
         storeService.deleteStore(id);
         return ResponseEntity.noContent().build();
     }

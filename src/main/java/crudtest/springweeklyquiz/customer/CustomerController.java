@@ -2,6 +2,7 @@ package crudtest.springweeklyquiz.customer;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,19 +29,19 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable("id") Long id) {
         CustomerDto customerByIdDto = customerService.getCustomerById(id);
         return ResponseEntity.ok(customerByIdDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> updateCustomerById(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> updateCustomerById(@PathVariable("id") Long id) {
         CustomerDto customerDto = customerService.updateCustomerById(id);
         return ResponseEntity.ok(customerDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CustomerDto> deleteCustomerById(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> deleteCustomerById(@PathVariable("id") Long id) {
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
     }

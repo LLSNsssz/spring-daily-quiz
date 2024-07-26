@@ -20,11 +20,16 @@ public class MenuService {
         return convertToDto(menu);
     }
 
-    public MenuDto updateMenuById(Long id) {
+    public MenuDto updateMenuById(Long id, MenuDto menuDto) {
         Menu menu = menuRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("해당 메뉴는 존재하지 않습니다"));
-        menu = menuRepository.save(menu);
-        return convertToDto(menu);
+        menu.setName(menuDto.getName());
+        menu.setCategory(menuDto.getCategory());
+        menu.setPrice(menuDto.getPrice());
+        menu.setDescription(menuDto.getDescription());
+
+        Menu updatedMenu = menuRepository.save(menu);
+        return convertToDto(updatedMenu);
     }
 
     public void deleteMenuById(Long id) {
@@ -55,8 +60,8 @@ public class MenuService {
     private Menu convertToEntity(MenuDto menuDto) {
         Menu menu = new Menu();
         menu.setId(menuDto.getId());
-        menu.setName(menu.getName());
-        menu.setCategory(menu.getCategory());
+        menu.setName(menuDto.getName());
+        menu.setCategory(menuDto.getCategory());
         menu.setPrice(menuDto.getPrice());
         menu.setDescription(menuDto.getDescription());
         return menu;

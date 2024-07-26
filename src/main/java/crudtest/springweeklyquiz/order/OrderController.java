@@ -1,8 +1,10 @@
 package crudtest.springweeklyquiz.order;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,31 +31,31 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") Long id) {
         OrderDto orderById = orderService.getOrderById(id);
         return ResponseEntity.ok(orderById);
     }
 
     @GetMapping("/store/{id}")
-    public ResponseEntity<List<OrderDto>> getAllOrderByStoreId(@PathVariable Long id) {
+    public ResponseEntity<List<OrderDto>> getAllOrderByStoreId(@PathVariable("id") Long id) {
         List<OrderDto> allOrderByStoreId = orderService.getAllOrderByStoreId(id);
         return ResponseEntity.ok(allOrderByStoreId);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDto> updateOrderById(@PathVariable Long id) {
-        OrderDto orderDto = orderService.updateOrder(id);
-        return ResponseEntity.ok(orderDto);
+    public ResponseEntity<OrderDto> updateOrderById(@PathVariable("id") Long id, @RequestBody OrderDto orderDto) {
+        OrderDto updatedOrderDto = orderService.updateOrder(id, orderDto);
+        return ResponseEntity.ok(updatedOrderDto);
     }
 
     @PatchMapping("/{id}/complete")
-    public ResponseEntity<OrderDto> completeOrderById(@PathVariable Long id) {
+    public ResponseEntity<Void> completeOrderById(@PathVariable("id") Long id) {
         orderService.completeOrder(id);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/cancel")
-    public ResponseEntity<OrderDto> cancelOrderById(@PathVariable Long id) {
+    public ResponseEntity<Void> cancelOrderById(@PathVariable("id") Long id) {
         orderService.cancelOrder(id);
         return ResponseEntity.noContent().build();
     }

@@ -4,6 +4,7 @@ import crudtest.springweeklyquiz.customer.Customer;
 
 import crudtest.springweeklyquiz.order.oderItem.OrderItem;
 import crudtest.springweeklyquiz.store.Store;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -57,14 +59,4 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
-
-    public void addOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
-    }
-
-    public void removeOrderItem(OrderItem orderItem) {
-        orderItems.remove(orderItem);
-        orderItem.setOrder(null);
-    }
 }

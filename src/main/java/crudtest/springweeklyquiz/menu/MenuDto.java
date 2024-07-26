@@ -1,13 +1,11 @@
 package crudtest.springweeklyquiz.menu;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Value;
 
 /**
  * DTO for {@link Menu}

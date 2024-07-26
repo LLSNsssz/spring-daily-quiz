@@ -1,6 +1,5 @@
 package crudtest.springweeklyquiz.order.oderItem;
 
-import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +14,4 @@ public class OrderItemDto {
     private Long orderId;
     private Long menuId;
     private int quantity;
-    private BigDecimal price;
 }

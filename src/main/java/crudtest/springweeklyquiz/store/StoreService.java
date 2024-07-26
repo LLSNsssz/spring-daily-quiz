@@ -32,9 +32,12 @@ public class StoreService {
             .collect(Collectors.toList());
     }
 
-    public StoreDto updateStoreById(Long id) {
+    public StoreDto updateStoreById(Long id, StoreDto storeDto) {
         Store store = storeRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("가게를 찾을 수 없습니다."));
+        store.setName(storeDto.getName());
+        store.setAddress(storeDto.getAddress());
+        store.setPhoneNumber(storeDto.getPhoneNumber());
         store = storeRepository.save(store);
         return convertToDto(store);
     }
